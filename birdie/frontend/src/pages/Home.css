@@ -1,0 +1,204 @@
+.home { padding: 28px 0 80px; }
+
+.home-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Generate */
+.generate-section { margin-bottom: 28px; }
+
+.generate-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+}
+
+.generate-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.generate-row { display: flex; gap: 10px; }
+
+.generate-input {
+  flex: 1;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: box-shadow 0.15s;
+}
+.generate-input:focus { box-shadow: 0 0 0 2px rgba(255,255,255,0.06); }
+.generate-input::placeholder { color: var(--text-muted); }
+.generate-input:disabled { opacity: 0.5; }
+
+.generate-btn {
+  padding: 10px 20px;
+  background: var(--text-primary);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--bg);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  white-space: nowrap;
+}
+.generate-btn:hover:not(:disabled) { opacity: 0.88; }
+.generate-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.generate-footer { margin-top: 10px; }
+
+.api-key-prompt {
+  background: none;
+  border: none;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s;
+}
+.api-key-prompt:hover { color: var(--text-secondary); }
+
+.api-key-inline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.api-key-input {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  color: var(--text-primary);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  outline: none;
+  width: 260px;
+}
+
+.api-key-hint { font-size: 11px; color: var(--text-muted); }
+
+.api-key-set {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--green-bright);
+}
+
+.api-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green-bright);
+  flex-shrink: 0;
+}
+
+.api-key-remove {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
+/* Grid */
+.markets-section { margin-bottom: 8px; }
+
+.markets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+}
+
+/* Empty */
+.markets-empty {
+  padding: 52px 24px;
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.markets-empty-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.markets-empty-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.markets-empty-link {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Skeleton */
+.skeleton-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: skeleton-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 0.8; }
+}
+
+.skeleton-line, .skeleton-bar, .skeleton-buttons {
+  background: var(--surface2);
+  border-radius: var(--radius-sm);
+}
+.skeleton-line.short  { height: 10px; width: 30%; }
+.skeleton-line.long   { height: 36px; width: 88%; }
+.skeleton-line.medium { height: 10px; width: 55%; }
+.skeleton-bar         { height: 4px;  width: 100%; }
+.skeleton-buttons     { height: 38px; width: 100%; }
+
+/* Divider & positions */
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 36px 0 28px;
+}
+
+.section-heading {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}

@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  username     String   @unique
+  password     String?  // null for Google OAuth users
+  googleId     String?  @unique
+  avatar       String?
+  balance      Float    @default(1000)
+  bets         Bet[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Market {
+  id        Int      @id @default(autoincrement())
+  title     String
+  category  String
+  yesProb   Float
+  volume    Float    @default(0)
+  resolved  Boolean  @default(false)
+  outcome   String?  // "YES" | "NO" | null
+  bets      Bet[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Bet {
+  id         Int      @id @default(autoincrement())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+  market     Market   @relation(fields: [marketId], references: [id])
+  marketId   Int
+  side       String   // "YES" | "NO"
+  amount     Float
+  payout     Float
+  entryProb  Float
+  settled    Boolean  @default(false)
+  settledAt  DateTime?
+  placedAt   DateTime @default(now())
+}
