@@ -65,9 +65,10 @@ const MARKETS = [
 async function main() {
   console.log('Seeding database...');
 
-  // Clear existing markets first to avoid duplicates on re-run
+  // Delete bets first, then markets (respects foreign key constraint)
+  await prisma.bet.deleteMany({});
   await prisma.market.deleteMany({});
-  console.log('Cleared existing markets');
+  console.log('Cleared existing data');
 
   for (const market of MARKETS) {
     await prisma.market.create({ data: market });
