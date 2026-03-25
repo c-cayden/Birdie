@@ -57,9 +57,10 @@ router.post('/', requireAuth, async (req, res) => {
 
 // ── POST /api/markets/generate ────────────────────────────
 router.post('/generate', requireAuth, async (req, res) => {
-  const { topic, apiKey } = req.body;
-  if (!topic) return res.status(400).json({ error: 'topic is required' });
-  if (!apiKey) return res.status(400).json({ error: 'apiKey is required' });
+  const { topic } = req.body;
+if (!topic) return res.status(400).json({ error: 'topic is required' });
+const apiKey = process.env.ANTHROPIC_API_KEY;
+if (!apiKey) return res.status(500).json({ error: 'Anthropic API key not configured on server' });
 
   const SYSTEM = `You are a prediction market maker for Birdie, a Kalshi-style betting platform.
 Use the web_search tool to research current real-world events, then create 4-6 YES/NO prediction markets.
