@@ -8,9 +8,8 @@ import './Home.css';
 const SKELETON_COUNT = 6;
 
 export default function Home() {
-  const { markets, activeTab, setActiveTab, loading, generating, generateMarkets, apiKey, setApiKey } = useApp();
+  const { markets, activeTab, setActiveTab, loading, generating, generateMarkets } = useApp();
   const [topic, setTopic] = useState('');
-  const [showApiInput, setShowApiInput] = useState(false);
 
   async function handleGenerate(e) {
     e.preventDefault();
@@ -39,47 +38,10 @@ export default function Home() {
               <button
                 className="generate-btn"
                 type="submit"
-                disabled={generating || !topic.trim() || !apiKey}
+                disabled={generating || !topic.trim()}
               >
                 {generating ? 'Generating...' : 'Generate'}
               </button>
-            </div>
-
-            {/* API key row */}
-            <div className="generate-footer">
-              {!apiKey ? (
-                showApiInput ? (
-                  <div className="api-key-inline">
-                    <input
-                      className="api-key-input"
-                      type="password"
-                      placeholder="sk-ant-api03-..."
-                      onKeyDown={e => {
-                        if (e.key === 'Enter') {
-                          const val = e.target.value.trim();
-                          if (val.startsWith('sk-ant-')) {
-                            setApiKey(val);
-                            setShowApiInput(false);
-                          }
-                        }
-                      }}
-                    />
-                    <span className="api-key-hint">Press Enter to save</span>
-                  </div>
-                ) : (
-                  <button type="button" className="api-key-prompt" onClick={() => setShowApiInput(true)}>
-                    + Add Anthropic API key to enable generation
-                  </button>
-                )
-              ) : (
-                <span className="api-key-set">
-                  <span className="api-dot" />
-                  Anthropic API connected ·{' '}
-                  <button type="button" className="api-key-remove" onClick={() => setApiKey('')}>
-                    Remove
-                  </button>
-                </span>
-              )}
             </div>
           </form>
         </section>
