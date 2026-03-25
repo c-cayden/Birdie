@@ -11,7 +11,6 @@ export function AppProvider({ children }) {
   const [activeTab, setActiveTab]   = useState('All');
   const [loading, setLoading]       = useState(false);
   const [generating, setGenerating] = useState(false);
-  const [apiKey, setApiKey]         = useState('');
   const [toast, setToast]           = useState(null);
 
   function authHeaders() {
@@ -74,14 +73,13 @@ export function AppProvider({ children }) {
   }
 
   async function generateMarkets(topic) {
-    if (!apiKey) { showToast('Enter your Anthropic API key first', 'error'); return; }
     if (!token) { showToast('Sign in to generate markets', 'error'); return; }
     setGenerating(true);
     try {
       const res = await fetch(`${API}/api/markets/generate`, {
         method: 'POST',
         headers: authHeaders(),
-        body: JSON.stringify({ topic, apiKey }),
+        body: JSON.stringify({ topic }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Generation failed');
@@ -114,7 +112,7 @@ export function AppProvider({ children }) {
   return (
     <AppContext.Provider value={{
       markets, bets, activeTab, setActiveTab,
-      loading, generating, apiKey, setApiKey, toast,
+      loading, generating, toast,
       placeBet, generateMarkets, purchaseFunds,
       fetchMarkets, showToast,
     }}>
